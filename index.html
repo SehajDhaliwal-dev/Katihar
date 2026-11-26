@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Karigar - Artisan Handicrafts and Handloom Store</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <h1 class="logo">Karigar</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#shop">Shop</a>
+      <a href="#artisans">Artisans</a>
+      <a href="#gi">GI Badge</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="cart">Cart: <span id="cartCount">0</span></div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section id="home" class="hero">
+    <h2>Handmade by the artisan. Delivered to you.</h2>
+    <p>Buy authentic handloom, brassware, terracotta, woodcraft and macrame directly from the craftsperson. No middlemen.</p>
+    <a href="#shop" class="btn">Shop Now</a>
+  </section>
+
+  <!-- ===== SHOP ===== -->
+  <section id="shop">
+    <h2 class="section-title">Our Handicrafts</h2>
+
+    <!-- Filter buttons -->
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterProducts('All', this)">All</button>
+      <button class="filter-btn" onclick="filterProducts('Handloom Silk', this)">Handloom Silk</button>
+      <button class="filter-btn" onclick="filterProducts('Brassware', this)">Brassware</button>
+      <button class="filter-btn" onclick="filterProducts('Terracotta', this)">Terracotta</button>
+      <button class="filter-btn" onclick="filterProducts('Woodcraft', this)">Woodcraft</button>
+      <button class="filter-btn" onclick="filterProducts('Macrame', this)">Macrame</button>
+    </div>
+
+    <p id="resultText" class="result-text"></p>
+
+    <!-- Products are added here by script.js -->
+    <div id="productList" class="product-grid"></div>
+  </section>
+
+  <!-- ===== ARTISANS ===== -->
+  <section id="artisans" class="light-section">
+    <h2 class="section-title">Meet the Artisans</h2>
+    <p class="section-sub">Every product comes from a real producer. Click a card to read the story.</p>
+    <div id="artisanList" class="artisan-grid"></div>
+  </section>
+
+  <!-- ===== GI INFO ===== -->
+  <section id="gi">
+    <h2 class="section-title">What is the GI Badge?</h2>
+    <div class="gi-box">
+      <div class="gi-badge big">GI</div>
+      <p>
+        GI stands for <b>Geographical Indication</b>. It is a tag given to products that come from a
+        particular region and have special quality because of that place. A product with the GI badge
+        is verified to be made in its original region by traditional methods. Products without a GI tag
+        carry a <b>Handmade Heritage</b> tag instead.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="light-section">
+    <h2 class="section-title">Contact Us</h2>
+    <div class="contact-box">
+      <label>Your Name</label>
+      <input type="text" id="cName" placeholder="Enter your name">
+      <label>Message</label>
+      <textarea id="cMsg" rows="4" placeholder="Write your message"></textarea>
+      <button class="btn" onclick="sendMessage()">Send</button>
+      <p id="contactReply"></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Karigar - Artisan Handicrafts and Handloom Store | Sample frontend project</p>
+  </footer>
+
+  <!-- ===== PRODUCT POPUP (hidden until a product is opened) ===== -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+
+      <div class="modal-body">
+
+        <!-- Left side: zoom gallery -->
+        <div class="gallery">
+          <div id="zoomBox" class="zoom-box" onmousemove="moveZoom(event)" onmouseleave="resetZoom()" onclick="toggleZoom(event)">
+            <img id="mainImage" src="" alt="Product image" onerror="useBackup(this)">
+          </div>
+          <p class="zoom-hint">Click the image to zoom in. Move the mouse to inspect the weave.</p>
+          <div id="thumbs" class="thumbs"></div>
+        </div>
+
+        <!-- Right side: details -->
+        <div class="details">
+          <span id="mCraft" class="craft-tag"></span>
+          <h3 id="mName"></h3>
+          <p id="mPrice" class="price"></p>
+          <div id="mGI"></div>
+          <p id="mDesc"></p>
+          <button class="btn" id="mAddBtn">Add to Cart</button>
+
+          <!-- Artisan bio card -->
+          <div class="bio-card">
+            <h4>About the Artisan</h4>
+            <div class="bio-top">
+              <img id="mPhoto" src="" alt="Artisan photo" onerror="useBackup(this)">
+              <div>
+                <p id="mArtisan" class="bio-name"></p>
+                <p id="mOrigin" class="bio-origin"></p>
+                <p id="mHeritage" class="heritage"></p>
+              </div>
+            </div>
+            <p id="mStory"></p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
